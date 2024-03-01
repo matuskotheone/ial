@@ -1,0 +1,53 @@
+
+    if (*(tree) == NULL)
+    {
+        (*tree) = malloc(sizeof(bst_node_t*));
+        //error 
+        if ((*tree) == NULL)
+        {
+            printf("ERROR");
+        }
+
+        (*tree)->key = key;
+        (*tree)->value = value;
+        (*tree)->left = NULL;
+        (*tree)->right = NULL;
+        return;
+    }
+
+
+    bst_node_t* temp = *tree; 
+    while(temp != NULL)
+    {
+        if(temp->left == NULL && temp->key > key)
+        {
+            temp->left = malloc(sizeof(bst_node_t*));
+            temp->left->key = key;
+            temp->left->value = value;
+            temp->left->left = NULL;
+            temp->left->right = NULL;
+            return;
+        }
+        else if(temp->right == NULL && temp->key < key)
+        {
+            temp->left = malloc(sizeof(bst_node_t*));
+            temp->left->key = key;
+            temp->left->value = value;
+            temp->left->left = NULL;
+            temp->left->right = NULL;
+            return;
+        }
+        else if (temp->key > key)
+        {
+            temp = temp->left;
+        }
+        else if(temp->key < key)
+        {
+            temp = temp->right;
+        }
+        else 
+        {
+            temp->value = value;
+            return;
+        }
+    }
